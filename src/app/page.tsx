@@ -4,11 +4,11 @@ import Link from "next/link";
 export default function Home() {
   const routes = [
     { name: "Batching Demo", path: "/batching" },
-    // { name: "useEffect Demo", path: "/use-effect" },
-    // { name: "Forms", path: "/forms" },
-    // { name: "Auth Example", path: "/auth" },
-    // { name: "API Demo", path: "/api-demo" },
-    // { name: "Dashboard", path: "/dashboard" },
+    { name: "useEffect Demo", path: "/use-effect" },
+    { name: "Forms", path: "/forms" },
+    { name: "Auth Example", path: "/auth" },
+    { name: "API Demo", path: "/api-demo" },
+    { name: "Dashboard", path: "/dashboard" },
   ];
 
   return (
@@ -30,21 +30,17 @@ export default function Home() {
             Click on any route to navigate{" "}
           </p>
         </div>
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-          {routes.map((route) => (
-            <Link
-              key={route.path}
-              href={route.path}
-              className="rounded-2xl border border-zinc-200 p-4 transition hover:shadow-md hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900"
-            >
-              <h3 className="text-lg font-semibold text-black dark:text-white">
-                {route.name}
-              </h3>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                {route.path}
-              </p>
-            </Link>
-          ))}
+        <div className="w-full mt-6">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6">
+            {routes.map((route) => (
+              <li
+                key={route.path}
+                className="text-black dark:text-white text-sm cursor-pointer"
+              >
+                • {route.name}
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </div>
