@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Home() {
   const routes = [
-    { name: "Batching Demo", path: "/batching" },
-    { name: "useEffect Demo", path: "/use-effect" },
+    { name: "Batching", path: "/batching" },
+    { name: "Prop Drilling", path: "/prop-drilling/parent" },
     { name: "Forms", path: "/forms" },
     { name: "Auth Example", path: "/auth" },
     { name: "API Demo", path: "/api-demo" },
@@ -37,7 +37,10 @@ export default function Home() {
                 key={route.path}
                 className="text-black dark:text-white text-sm cursor-pointer"
               >
-                • {route.name}
+                •{" "}
+                <Link href={route.path} className="hover:underline">
+                  {route.name}
+                </Link>
               </li>
             ))}
           </ul>
