@@ -15,7 +15,7 @@ const page = () => {
     }
   };
 
-  console.log("Render");
+  console.log("Render", inputRef.current);
 
   return (
     <>

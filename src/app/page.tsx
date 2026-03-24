@@ -7,8 +7,11 @@ export default function Home() {
     { name: "useEffect Demo", path: "/use-effect" },
     { name: "useState", path: "/use-state" },
     { name: "useRef", path: "/use-ref" },
-    { name: "API Demo", path: "/api-demo" },
-    { name: "Dashboard", path: "/dashboard" },
+    { name: "API", path: "/api" },
+    { name: "useMemo", path: "/use-memo" },
+    { name: "useCallback", path: "/use-callback" },
+    { name: "React.Memo", path: "/react-memo" },
+    { name: "useLayoutEffect", path: "/use-layout-effect" },
   ];
 
   return (

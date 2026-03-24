@@ -1,28 +1,35 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const page = () => {
   const [message, setMessage] = useState("Initialized message value");
-  const [messageButton, setMessageButton] = useState("Initialized message button value");
+  const [messageButton, setMessageButton] = useState(
+    "Initialized message button value",
+  );
   const [isMounted, setIsMounted] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+  let updationCount = useRef(0);
 
+  //   ComponentDidMount,
   useEffect(() => {
     const timer = setTimeout(() => {
       setMessage("Congrats! Component is mounted!!");
       setIsMounted(true);
     }, 5000);
 
+    //   ComponentWillUnmount
     return () => clearTimeout(timer);
   }, []);
 
+  //   ComponentDidUpdate
   useEffect(() => {
     if (isMounted) {
       const timer = setTimeout(() => {
         setMessage("This message is after 5 seconds of component mounting!");
       }, 5000);
 
+      //   ComponentWillUnmount
       return () => clearTimeout(timer);
     }
   }, [isMounted]);
@@ -31,9 +38,17 @@ const page = () => {
     setButtonClicked((prev) => !prev);
   };
 
+  //   ComponentDidUpdate
   useEffect(() => {
     setMessageButton(`Button value is set ${buttonClicked}`);
   }, [buttonClicked]);
+
+  //   ComponentDidUpdate
+  useEffect(() => {
+    // setUpdationCount((prev) => prev + 1);
+    updationCount.current += 1;
+    console.log(`Component Updated: ${updationCount.current} times`);
+  });
 
   return (
     <>
@@ -45,6 +60,8 @@ const page = () => {
       <button onClick={hadleState} className="p-5 cursor-pointer border-1">
         Toggle the state information
       </button>
+
+      <h1 className="text-center">Component updated: {updationCount.current} times</h1>
     </>
   );
 };
