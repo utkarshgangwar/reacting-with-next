@@ -18,9 +18,9 @@ const page = () => {
 
   return (
     <>
-      <button onClick={(e) => handleCount("dec")}>-</button>
+      <button onClick={() => handleCount("dec")}>-</button>
       {count}
-      <button onClick={(e) => handleCount("inc")}>+</button>
+      <button onClick={() => handleCount("inc")}>+</button>
     </>
   );
 };
