@@ -6,7 +6,7 @@ export default function Home() {
     { name: "Batching Demo", path: "/batching" },
     { name: "useEffect Demo", path: "/use-effect" },
     { name: "useState", path: "/use-state" },
-    { name: "Auth Example", path: "/auth" },
+    { name: "useRef", path: "/use-ref" },
     { name: "API Demo", path: "/api-demo" },
     { name: "Dashboard", path: "/dashboard" },
   ];

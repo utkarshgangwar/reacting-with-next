@@ -22,19 +22,22 @@ export default function BatchingExample() {
   };
 
   const handleClick3 = (): void => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setCount3(count3 + 1);
       setCount3(count3 + 2);
       setCount3(count3 + 3);
     }, 1000);
+    clearTimeout(timer);
   };
 
   const handleClick4 = (): void => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setCount4((prev) => prev + 1);
       setCount4((prev) => prev + 2);
       setCount4((prev) => prev + 3);
     }, 1000);
+
+    clearTimeout(timer);
   };
 
   const handleReset = () => {
