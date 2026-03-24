@@ -37,7 +37,10 @@ export default function Home() {
                 key={route.path}
                 className="text-black dark:text-white text-sm cursor-pointer"
               >
-                • {route.name}
+                •{" "}
+                <Link href={route.path} className="hover:underline">
+                  {route.name}
+                </Link>
               </li>
             ))}
           </ul>
