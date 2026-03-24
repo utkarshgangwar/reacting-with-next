@@ -13,6 +13,7 @@ export default function Home() {
     { name: "useCallback", path: "/use-callback" },
     { name: "React.Memo", path: "/react-memo" },
     { name: "useLayoutEffect", path: "/use-layout-effect" },
+    
   ];
 
   return (
