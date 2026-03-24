@@ -5,7 +5,7 @@ export default function Home() {
   const routes = [
     { name: "Batching Demo", path: "/batching" },
     { name: "useEffect Demo", path: "/use-effect" },
-    { name: "Forms", path: "/forms" },
+    { name: "useState", path: "/use-state" },
     { name: "Auth Example", path: "/auth" },
     { name: "API Demo", path: "/api-demo" },
     { name: "Dashboard", path: "/dashboard" },
