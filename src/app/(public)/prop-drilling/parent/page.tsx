@@ -1,24 +1,26 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import ChildComponent from '../child/page'
+import React, { useState } from "react";
+// import ChildComponent from '../child/page'
+import dynamic from "next/dynamic";
+
+const ChildComponent = dynamic(() => import("../child/page"), { ssr: false });
 
 const Page: React.FC = () => {
-  const [messageToChild, setMessageToChild] = useState<string>("")
-  const [messageToChild2, setMessageToChild2] = useState<string>("")
+  const [messageToChild, setMessageToChild] = useState<string>("");
+  const [messageToChild2, setMessageToChild2] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessageToChild(e.target.value)
-  }
+    setMessageToChild(e.target.value);
+  };
 
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMessageToChild2(e.target.value)
-  }
+    setMessageToChild2(e.target.value);
+  };
 
   return (
     <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
       <div className="w-full max-w-xl bg-zinc-800 shadow-xl rounded-2xl p-6 space-y-6 border border-zinc-700">
-
         {/* Header */}
         <h1 className="text-2xl font-semibold text-white text-center">
           Parent Component
@@ -65,10 +67,9 @@ const Page: React.FC = () => {
             messageSecond={messageToChild2}
           />
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

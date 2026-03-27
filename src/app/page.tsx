@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "./components/navbar";
 
 export default function Home() {
   const routes = [
@@ -15,6 +14,9 @@ export default function Home() {
     { name: "useLayoutEffect", path: "/use-layout-effect" },
     { name: "useId", path: "/use-id" },
     { name: "PropDrilling/parent", path: "/prop-drilling/parent" },
+    { name: "throttle/debounce", path: "throttle-debounce" },
+    { name: "concurrency", path: "concurrency" },
+    { name: "useTransition", path: "use-transition" },
   ];
 
   return (
