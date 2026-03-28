@@ -1,20 +1,12 @@
-import React, { useState, useTransition } from "react";
+"use client";
 
-const ALL_ITEMS = [
-  "React",
-  "React Native",
-  "Next.js",
-  "Vue.js",
-  "Angular",
-  "Svelte",
-  "SolidJS",
-];
+import React, { useState, useTransition } from "react";
 
 const page = () => {
   const [inputValue, setInputValue] = useState("");
-  const [filterQuery, setFilterQuery] = useState("");
-  const [filteredItems, setFilteredItems] = useState<string[]>([]);
-
+  const [inputValue2, setInputValue2] = useState("");
+  const [data, setData] = useState<string[]>([]);
+  const [data2, setData2] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,45 +14,68 @@ const page = () => {
     setInputValue(newValue);
 
     startTransition(() => {
-      setFilterQuery(newValue);
+      const l = [];
+      for (let i = 0; i < 20000; i++) {
+        l.push(newValue);
+      }
 
-      const filtered = ALL_ITEMS.filter((item) =>
-        item.toLowerCase().includes(newValue.toLocaleLowerCase()),
-      );
-      setFilteredItems(filtered);
+      setData(l);
     });
   };
 
+  function handleChangeWithoutTransition(
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) {
+    const newValue2 = e.target.value;
+    setInputValue2(newValue2);
+    const l = [];
+    for (let i = 0; i < 20000; i++) {
+      l.push(newValue2);
+    }
+
+    setData2(l);
+  }
+
   return (
     <>
-      <h1 className="text-center">useTransition v18</h1>
-      <h2>Filter list with Transition</h2>
-      <div className="flex flex-row gap-4">
-        <input
-          className="m-2 p-2"
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          placeholder="Type to filter..."
-        />
+      <h1 className="text-center">This is useTransition v18</h1>
+      <div className="flex flex-column justify-between">
         <div>
-          <p className="p-2 m-2">
-            <strong>Filter Query: </strong> {filterQuery}
-          </p>
-          <p>
-            While list is being searched, user can type effortlessly
-            <br />
-            without getting a lag in the input field.
-          </p>
+          <h1 className="text-center">This is with useTransition hook</h1>
+          <input
+            className="border-1"
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+          />{" "}
+          <br />
+          {isPending && <>Loading ...</>}
+          {data.map((item, index) => {
+            return (
+              <span key={item + index}>
+                {item} <br />
+              </span>
+            );
+          })}
+        </div>
+        <div>
+          <h1 className="text-center">This is without useTransition hook</h1>
+          <input
+            className="border-1"
+            type="text"
+            value={inputValue2}
+            onChange={handleChangeWithoutTransition}
+          />{" "}
+          <br />
+          {data2.map((item, index) => {
+            return (
+              <span key={item + index}>
+                {item} <br />
+              </span>
+            );
+          })}
         </div>
       </div>
-
-      {isPending && <p>Filtering in background...</p>}
-      <ul>
-        {filteredItems.map((item, key) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
     </>
   );
 };
