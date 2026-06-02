@@ -1,85 +1,169 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 
-// 🔹 Debounce with types
-function debounce<T extends (...args: any[]) => void>(fn: T, delay: number) {
-  let timer: ReturnType<typeof setTimeout>;
+export const locations = [
+  // Countries
+  "India",
+  "United States",
+  "United Kingdom",
+  "Canada",
+  "Australia",
+  "Germany",
+  "France",
+  "Italy",
+  "Spain",
+  "Netherlands",
+  "Switzerland",
+  "Sweden",
+  "Norway",
+  "Denmark",
+  "Finland",
+  "Russia",
+  "China",
+  "Japan",
+  "South Korea",
+  "Brazil",
+  "Mexico",
+  "Argentina",
+  "South Africa",
+  "Nigeria",
+  "Egypt",
+  "Saudi Arabia",
+  "United Arab Emirates",
+  "Turkey",
+  "Indonesia",
+  "Thailand",
+  "Vietnam",
+  "Philippines",
+  "Singapore",
+  "Malaysia",
+  "New Zealand",
+  "Ireland",
+  "Poland",
+  "Portugal",
+  "Greece",
+  "Austria",
+  "Belgium",
+  "Czech Republic",
+  "Hungary",
+  "Romania",
+  "Ukraine",
+  "Pakistan",
+  "Bangladesh",
+  "Sri Lanka",
+  "Nepal",
+  "Afghanistan",
 
-  return (...args: Parameters<T>) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn(...args);
-    }, delay);
-  };
-}
+  // India Cities
+  "Delhi",
+  "Mumbai",
+  "Bangalore",
+  "Hyderabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Bhopal",
+  "Indore",
+  "Nagpur",
+  "Chandigarh",
+  "Surat",
+  "Patna",
+  "Ranchi",
+  "Raipur",
+  "Noida",
+  "Gurgaon",
 
-// 🔹 Throttle with types
-function throttle<T extends (...args: any[]) => void>(fn: T, limit: number) {
-  let lastCall = 0;
+  // USA Cities
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+  "San Francisco",
+  "Seattle",
+  "Boston",
+  "Dallas",
+  "Miami",
 
-  return (...args: Parameters<T>) => {
-    const now = Date.now();
+  // Europe Cities
+  "London",
+  "Manchester",
+  "Birmingham",
+  "Paris",
+  "Berlin",
+  "Munich",
+  "Rome",
+  "Madrid",
+  "Barcelona",
+  "Amsterdam",
 
-    if (now - lastCall >= limit) {
-      lastCall = now;
-      fn(...args);
-    }
-  };
-}
+  // Asia Cities
+  "Tokyo",
+  "Osaka",
+  "Beijing",
+  "Shanghai",
+  "Seoul",
+  "Bangkok",
+  "Singapore",
+  "Kuala Lumpur",
+  "Jakarta",
+  "Manila",
 
-const page: React.FC = () => {
-  const [input, setInput] = useState<string>("");
-  const [debounceValue, setDebounceValue] = useState<string>("");
-  const [throttleValue, setThrottleValue] = useState<string>("");
+  // Middle East Cities
+  "Dubai",
+  "Abu Dhabi",
+  "Doha",
+  "Riyadh",
+  "Jeddah",
 
-  // ✅ Debounced handler
-  const debouncedUpdate = useCallback(
-    debounce((value: string) => {
-      setDebounceValue(value);
-      console.log("Debounce API Call:", value);
-    }, 1000),
-    [],
-  );
+  // Australia Cities
+  "Sydney",
+  "Melbourne",
+  "Brisbane",
+  "Perth",
+  "Adelaide",
 
-  // ✅ Throttled handler
-  const throttledUpdate = useCallback(
-    throttle((value: string) => {
-      setThrottleValue(value);
-      console.log("Throttle API Call:", value);
-    }, 1000),
-    [],
-  );
+  // Africa Cities
+  "Cape Town",
+  "Johannesburg",
+  "Lagos",
+  "Cairo",
+  "Nairobi",
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  // South America Cities
+  "São Paulo",
+  "Rio de Janeiro",
+  "Buenos Aires",
+  "Santiago",
+  "Lima",
+];
 
-    setInput(value);
-    debouncedUpdate(value);
-    throttledUpdate(value);
-  };
+const page = () => {
+  const [input, setInput] = useState("");
+  const [list, setList] = useState([]);
+
+  useEffect(() => {}, [input]);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h2>Throttle vs Debounce (TSX)</h2>
-
+    <>
       <input
         type="text"
         value={input}
-        onChange={handleChange}
-        placeholder="Type something..."
-        style={{ padding: "10px", width: "300px" }}
+        onChange={(e) => setInput(e.target.value)}
       />
 
-      <div style={{ marginTop: "20px" }}>
-        <p>
-          <strong>Debounced Value:</strong> {debounceValue}
-        </p>
-        <p>
-          <strong>Throttled Value:</strong> {throttleValue}
-        </p>
-      </div>
-    </div>
+      <ul>
+        {list.map((item, index) => (
+          <p key={item + index}>
+            {item} <br />
+          </p>
+        ))}
+      </ul>
+    </>
   );
 };
 
